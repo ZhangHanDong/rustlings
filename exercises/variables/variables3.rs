@@ -17,7 +17,7 @@ fn main() {
 
 // 继承式可变
 // fn main() {
-//     let x = 3; // 默认不可变
+//     let mut x = 3; // 默认不可变
 //     println!("Number {}", x);
 //     let x = 5; // don't change this line
 //     println!("Number {}", x);

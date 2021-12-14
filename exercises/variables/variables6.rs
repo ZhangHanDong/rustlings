@@ -1,7 +1,7 @@
 // variables6.rs
 // Make me compile! Execute the command `rustlings hint variables6` if you want a hint :)
 
-// I AM NOT DONE
+// 
 
 // 思考：为什么常量需要指定类型？而变量可以推导。
 // 参考： https://github.com/rust-lang/rfcs/issues/1349
