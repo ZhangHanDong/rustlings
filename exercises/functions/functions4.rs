@@ -16,11 +16,8 @@ fn main() {
 // 2. 为什么 Rust 没有 三元操作符？
 // 3. 是否可以 let a = if { ... } 
 fn sale_price(price: i32) -> i32  {
-    if is_even(price) {
-        price - 10    // don't change this line
-    } else {
-        price - 3   // don't change this line
-    }
+    let value = if is_even(price) { price - 10 } else { price - 3 };
+    value
 }
 
 fn is_even(num: i32) -> bool {
