@@ -3,7 +3,7 @@
 // adding, changing or removing any of them.
 // Execute `rustlings hint move_semantics5` for hints :)
 
-// I AM NOT DONE
+// 
 
 // ｜ 100 ｜ ｜ ｜y ｜ z｜ 
 //     ^        |    | &mut x
