@@ -1,7 +1,7 @@
 // structs2.rs
 // Address all the TODOs to make the tests pass!
 
-// I AM NOT DONE
+// 
 
 #[derive(Debug)]
 struct Order {
@@ -26,6 +26,20 @@ fn create_order_template() -> Order {
     }
 }
 
+fn create_order() -> Order {
+    Order {
+        name: String::from("Hacker in Rust"),
+        year: 2019,
+        made_by_phone: false,
+        made_by_mobile: false,
+        made_by_email: true,
+        item_number: 123,
+        count: 1,
+    }
+}
+
+// 思考： 改成 impl Order 的 关联方法
+
 #[cfg(test)]
 mod tests {
     use super::*;
@@ -34,7 +48,7 @@ mod tests {
     fn your_order() {
         let order_template = create_order_template();
         // TODO: Create your own order using the update syntax and template above!
-        // let your_order =
+        let your_order = create_order();
         assert_eq!(your_order.name, "Hacker in Rust");
         assert_eq!(your_order.year, order_template.year);
         assert_eq!(your_order.made_by_phone, order_template.made_by_phone);
