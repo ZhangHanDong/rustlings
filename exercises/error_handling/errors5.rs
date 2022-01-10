@@ -4,14 +4,14 @@
 // It won't compile right now! Why?
 // Execute `rustlings hint errors5` for hints!
 
-// I AM NOT DONE
+// 
 
 use std::error;
 use std::fmt;
-use std::num::ParseIntError;
+use std::num::{ParseIntError, IntErrorKind};
 
 // TODO: update the return type of `main()` to make this compile.
-fn main() -> Result<(), ParseIntError> {
+fn main() -> Result<(), Box<dyn error::Error>> {
     let pretend_user_input = "42";
     let x: i64 = pretend_user_input.parse()?;
     println!("output={:?}", PositiveNonzeroInteger::new(x)?);
@@ -28,6 +28,30 @@ enum CreationError {
     Negative,
     Zero,
 }
+
+// 思考： 使用 From 如何转换？
+
+// impl Into<ParseIntError> for CreationError {
+//     fn into(self) -> ParseIntError {
+//         match self{
+//             CreationError::Negative => {
+//                 ParseIntError{kind: IntErrorKind::NegOverflow} 
+//             }
+//             CreationError::Zero =>  { ParseIntError{kind: IntErrorKind::Zero} }
+//         }
+//     }
+// }
+
+// impl From<CreationError> for ParseIntError {
+//     fn from(e: CreationError) -> ParseIntError {
+//         match e{
+//             CreationError::Negative => {
+//                 ParseIntError{kind: IntErrorKind::NegOverflow} 
+//             }
+//             CreationError::Zero =>  { ParseIntError{kind: IntErrorKind::Zero} }
+//         }
+//     }
+// }
 
 impl PositiveNonzeroInteger {
     fn new(value: i64) -> Result<PositiveNonzeroInteger, CreationError> {
@@ -50,4 +74,5 @@ impl fmt::Display for CreationError {
     }
 }
 
+// 去看标准库 Error
 impl error::Error for CreationError {}

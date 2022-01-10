@@ -16,16 +16,47 @@
 // There are at least two ways to implement this that are both correct-- but
 // one is a lot shorter! Execute `rustlings hint errors2` for hints to both ways.
 
-// I AM NOT DONE
+// 
 
 use std::num::ParseIntError;
 
 pub fn total_cost(item_quantity: &str) -> Result<i32, ParseIntError> {
     let processing_fee = 1;
     let cost_per_item = 5;
-    let qty = item_quantity.parse::<i32>();
+    // let qty : Result<i32, ParseIntError> = item_quantity.parse::<i32>();
+
+    // 方法一：
+    // match qty {
+    //     Ok(qty) => {
+    //         Ok(qty * cost_per_item + processing_fee)
+    //     }
+    //     Err(err) => {
+    //         Err(err)
+    //     }
+    // }
+
+    
+    // 方法二
+    let qty = item_quantity.parse::<i32>()?;
+    // 等价于
+    // let qty = match qty {
+    //     Ok(qty) => {
+    //        qty
+    //     }
+    //     Err(err) => {
+    //         return Err(err);
+    //     }
+    // };
 
     Ok(qty * cost_per_item + processing_fee)
+
+
+    // 方法三: Rust 正在改良的错误处理新语法 try
+    // try 不等于 try!
+    // try {
+    //     let qty = item_quantity.parse::<i32>()?;
+    //     qty * cost_per_item + processing_fee
+    // }
 }
 
 #[cfg(test)]
