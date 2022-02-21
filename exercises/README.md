@@ -22,3 +22,4 @@
 | macros                 | §19.6         |
 | clippy                 | n/a           |
 | conversions            | n/a           |
+| unsafe                 | n/a           |
