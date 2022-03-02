@@ -16,11 +16,24 @@
 //
 // Execute `rustlings hint box1` for hints :)
 
-// I AM NOT DONE
+// 
+
+// 思考：
+
+// 1. 为什么需要加 Box<List>，未加的话有 infinite size 错误 ？
+//
+//  Rust 编译时判断类型大小，如果类型大小超过了编译器的限制，则会报错。(Size of the type `List` cannot be statically determined) , 
+//  Sized trait 只能在编译时判断类型大小，不能在运行时判断。
+//  因此，需要加上 Box<List>，这样就可以在编译时判断类型大小了。
+// 以上都是 github copilot 的解释。
+
+// [https://doc.rust-lang.org/std/marker/trait.Sized.html](https://doc.rust-lang.org/std/marker/trait.Sized.html)
+
+// Box<T> 是一个智能指针，它可以指向任何类型的值，并且它可以在编译时被判断大小。主要是判断栈上的大小，因为在编译期需要在栈上去分配内存。
 
 #[derive(PartialEq, Debug)]
 pub enum List {
-    Cons(i32, List),
+    Cons(i32, Box<List>),
     Nil,
 }
 
@@ -33,11 +46,18 @@ fn main() {
 }
 
 pub fn create_empty_list() -> List {
-    unimplemented!()
+    List::Nil
 }
 
 pub fn create_non_empty_list() -> List {
-    unimplemented!()
+    List::Cons(1, 
+        Box::new(
+            List::Cons(2, Box::new(
+                List::Cons(3, Box::new(List::Nil))
+            )
+        ))
+    )
+
 }
 
 #[cfg(test)]

@@ -29,6 +29,8 @@ fn main() {
     let shared_numbers =  Arc::new(numbers);// TODO
     let mut joinhandles = Vec::new();
 
+    // let s = String::from("hello");
+    // let ss = s.clone();
     for offset in 0..8 {
         let child_numbers = shared_numbers.clone();// TODO
         joinhandles.push(thread::spawn(move || {
